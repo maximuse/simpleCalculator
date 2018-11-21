@@ -1,6 +1,7 @@
 from tkinter import *
 
 root = Tk()
+
 w = 265
 h = 270
 sw = root.winfo_screenwidth()
@@ -29,16 +30,29 @@ def btnClear():
 
 def btnEquals():
     global operator
-    result = str(eval(operator))
-    textInput.set(result)
-    operator = result
+    if operator != '':
+        try:
+            result = str(eval(operator))
+            textInput.set(result)
+            operator = result
+        except:
+            textInput.set('Error')
+            operator = ''
+
+
+def btnDelete():
+    global operator
+    operator = operator[:-1]
+    textInput.set(operator)
 
 
 calculator = Frame(root, relief=SUNKEN)
 calculator.pack()
 
-display = Entry(calculator, font=('courier new', 14), state=DISABLED, textvariable=textInput, insertwidth=4, justify='right')
-display.grid(columnspan=4, row=0, column=0, padx=10, pady=20)
+display = Entry(calculator, font=('courier new', 14), state=DISABLED, textvariable=textInput, width=15, justify='right')
+display.grid(columnspan=4, row=0, column=0, padx=10, pady=20, sticky=W)
+
+btnDel = Button(calculator, padx=1, pady=1, font=('courier new', 14), text='←', command=btnDelete).grid(row=0, column=4)
 
 btn7 = Button(calculator, padx=1, pady=1, font=('courier new', 14), text='7', command=lambda: btnClick(7)).grid(row=1, column=0)
 btn8 = Button(calculator, padx=1, pady=1, font=('courier new', 14), text='8', command=lambda: btnClick(8)).grid(row=1, column=1)

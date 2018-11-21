@@ -3,10 +3,10 @@ from tkinter import *
 root = Tk()
 w = 265
 h = 270
-ws = root.winfo_screenwidth()
-hs = root.winfo_screenheight()
-x = (ws/2) - (w/2)
-y = (hs/2) - (h/2)
+sw = root.winfo_screenwidth()
+hw = root.winfo_screenheight()
+x = (sw/2) - (w/2)
+y = (hw/2) - (h/2)
 root.geometry('%dx%d+%d+%d' % (w, h, x, y))
 root.resizable(False, False)
 root.title('Simple Calculator')
